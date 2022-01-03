@@ -61,4 +61,24 @@ public class LineStringTest {
 		Assert.assertEquals(6.3, lineToTranslate.getPointN(0).getCoordinate().getX(), EPSILON);
 		Assert.assertEquals(6.5, lineToTranslate.getPointN(0).getCoordinate().getY(), EPSILON);
 	}
+
+    @Test
+	public void testClone(){
+        List<Point> points = new ArrayList<>();
+        points.add(pt1);
+        points.add(pt2);
+
+        LineString l = new LineString(points);
+        
+        LineString lineCopy = l.clone();
+
+        l.translate(5.2, 1.0);
+
+
+		Assert.assertEquals(1.2, lineCopy.getPointN(1).getCoordinate().getX(), EPSILON);
+		Assert.assertEquals(3.5, lineCopy.getPointN(1).getCoordinate().getY(), EPSILON);
+	}
+
+
+
 }

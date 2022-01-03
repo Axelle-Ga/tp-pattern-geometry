@@ -37,4 +37,9 @@ public class Point implements Geometry {
         Coordinate newCoord = new Coordinate(newX, newY);
         this.coordinate = newCoord;
     }
+
+    @Override
+    public Point clone(){
+        return new Point(this.coordinate);
+    }
 }
