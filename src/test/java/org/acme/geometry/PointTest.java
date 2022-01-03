@@ -6,20 +6,28 @@ import org.junit.Test;
 public class PointTest {
     
     public static final double EPSILON = 1.0e-15;
+    public static final Coordinate c = new Coordinate(8.2, 4.5);
+	public static final Point point = new Point(c);
+    public static final Point pointEmpty = new Point();
 
     @Test
 	public void testDefaultConstructor(){
-		Point p = new Point();
-		Assert.assertEquals(0.0, p.getCoordinate().getX(), EPSILON);
-		Assert.assertEquals(0.0, p.getCoordinate().getY(), EPSILON);
+		
+		Assert.assertEquals(Double.NaN, pointEmpty.getCoordinate().getX(), EPSILON);
+		Assert.assertEquals(Double.NaN, pointEmpty.getCoordinate().getY(), EPSILON);
 	}
 
     @Test
 	public void testConstructor(){
-        Coordinate c = new Coordinate(8.2, 4.5);
-		Point p = new Point(c);
-		Assert.assertEquals(8.2, p.getCoordinate().getX(), EPSILON);
-		Assert.assertEquals(4.5, p.getCoordinate().getY(), EPSILON);
+        
+		Assert.assertEquals(8.2, point.getCoordinate().getX(), EPSILON);
+		Assert.assertEquals(4.5, point.getCoordinate().getY(), EPSILON);
+	}
+
+    @Test
+	public void testIsEmpty(){
+		Assert.assertTrue(pointEmpty.isEmpty());
+		Assert.assertFalse(point.isEmpty());
 	}
 
 }

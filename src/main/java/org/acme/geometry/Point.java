@@ -9,7 +9,11 @@ public class Point implements Geometry {
     }
 
     Point(Coordinate coordinate){
-        this.coordinate = coordinate;
+        if ( coordinate == null ){
+            this.coordinate = new Coordinate();
+        }else{
+            this.coordinate = coordinate;
+        }
     }
 
     @Override
@@ -19,6 +23,11 @@ public class Point implements Geometry {
 
     public Coordinate getCoordinate(){
         return this.coordinate;
+    }
+
+    @Override 
+    public Boolean isEmpty(){
+        return getCoordinate().isEmpty();
     }
 
 }
