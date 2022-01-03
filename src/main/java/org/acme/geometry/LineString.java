@@ -3,11 +3,10 @@ package org.acme.geometry;
 import java.util.List;
 
 public class LineString implements Geometry{
-    
+
     private List<Point> points;
 
     LineString(){
-
     }
 
     LineString(List<Point> points){
