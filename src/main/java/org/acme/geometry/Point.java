@@ -30,4 +30,11 @@ public class Point implements Geometry {
         return getCoordinate().isEmpty();
     }
 
+    @Override
+    public void translate(double dx, double dy){
+        double newX = dx + this.getCoordinate().getX();
+        double newY = dy + this.getCoordinate().getY();
+        Coordinate newCoord = new Coordinate(newX, newY);
+        this.coordinate = newCoord;
+    }
 }
