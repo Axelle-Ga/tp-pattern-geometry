@@ -1,5 +1,8 @@
 package org.acme.geometry;
 
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -124,6 +127,20 @@ public class LineStringTest {
         Assert.assertEquals(5.5, env.getYmax(), EPSILON);
         Assert.assertEquals(5.5, env.getYmin(), EPSILON);
     }
+
+    @Test
+	public void testAccept() throws UnsupportedEncodingException {
+		List<Point> points = new ArrayList<>();
+        points.add(pt2);
+
+        Geometry geometry = new LineString(points);
+		ByteArrayOutputStream os = new ByteArrayOutputStream();
+		PrintStream out = new PrintStream(os);
+		LogGeometryVisitor visitor = new LogGeometryVisitor(out);
+		geometry.accept(visitor);
+		String result = os.toString("UTF8");
+		Assert.assertEquals("Je suis une polyligne avec 1 point(s)\n", result);
+	}
 
 
 
