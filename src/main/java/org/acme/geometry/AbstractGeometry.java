@@ -13,4 +13,9 @@ public abstract class AbstractGeometry implements Geometry {
         return visitor.getResult();
     }
     
+    public Envelope getEnvelope(){
+        EnvelopeBuilder visitor = new EnvelopeBuilder();
+        this.accept(visitor);
+        return visitor.build();
+    }
 }
