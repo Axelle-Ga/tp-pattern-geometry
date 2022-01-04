@@ -142,6 +142,28 @@ public class LineStringTest {
 		Assert.assertEquals("Je suis une polyligne avec 1 point(s)\n", result);
 	}
 
+    @Test
+	public void testAcceptWktVisitor() throws UnsupportedEncodingException {
+		Point pt3 = new Point(new Coordinate(1.1, 5.5));
+        Point pt4 = new Point(new Coordinate(1.5, 4.5));
+        List<Point> points = new ArrayList<>();
+        points.add(pt3);
+        points.add(pt4);
+
+        LineString geometry = new LineString(points);
+		WktVisitor visitor = new WktVisitor();
+		geometry.accept(visitor);
+		Assert.assertEquals("LINESTRING(1.1 5.5,1.5 4.5)", visitor.getResult());
+	}
+
+    @Test
+	public void testAcceptWktVisitorEmpty() throws UnsupportedEncodingException {
+        LineString geometry = new LineString();
+		WktVisitor visitor = new WktVisitor();
+		geometry.accept(visitor);
+		Assert.assertEquals("LINESTRING EMPTY", visitor.getResult());
+	}
+
 
 
 }

@@ -75,9 +75,24 @@ public class PointTest {
 		PrintStream out = new PrintStream(os);
 		LogGeometryVisitor visitor = new LogGeometryVisitor(out);
 		geometry.accept(visitor);
-		// result contiendra ce qui est écrit dans la console
 		String result = os.toString("UTF8");
 		Assert.assertEquals("Je suis un point avec x=3.0 et y=4.0\n", result);
+	}
+
+	@Test
+	public void testAcceptWktVisitor() throws UnsupportedEncodingException{
+		Geometry geometry = new Point(new Coordinate(3.0,4.0));
+		WktVisitor visitor = new WktVisitor();
+		geometry.accept(visitor);
+		Assert.assertEquals("POINT(3.0 4.0)", visitor.getResult());
+	}
+
+	@Test
+	public void testAcceptWktVisitorEmpty() throws UnsupportedEncodingException{
+		Geometry geometry = new Point();
+		WktVisitor visitor = new WktVisitor();
+		geometry.accept(visitor);
+		Assert.assertEquals("POINT EMPTY", visitor.getResult());
 	}
 
 }
