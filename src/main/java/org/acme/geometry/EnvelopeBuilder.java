@@ -33,12 +33,15 @@ public class EnvelopeBuilder {
     }
 
     public Envelope build(){
-        assert getCoordSize() > 0;
-        double xmin = Collections.min(xVals);
-        double xmax = Collections.max(xVals);
-        double ymin = Collections.min(yVals);
-        double ymax = Collections.max(yVals);
-        return new Envelope(new Coordinate(xmin, ymin), new Coordinate(xmax, ymax));
+        if(getCoordSize() > 0){
+            double xmin = Collections.min(xVals);
+            double xmax = Collections.max(xVals);
+            double ymin = Collections.min(yVals);
+            double ymax = Collections.max(yVals);
+            return new Envelope(new Coordinate(xmin, ymin), new Coordinate(xmax, ymax));
+        }
+        else return new Envelope();
+        
     }
 
 }

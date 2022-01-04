@@ -51,5 +51,17 @@ public class PointTest {
 		Assert.assertEquals(4.5, pointCloned.getCoordinate().getY(), EPSILON);
 	}
 
+	@Test 
+    public void testGetEnvelope(){
+		Envelope envEmpty = pointEmpty.getEnvelope();
+		Envelope env = point.getEnvelope();
+
+		Assert.assertTrue(envEmpty.isEmpty());
+		Assert.assertFalse(env.isEmpty());
+		Assert.assertEquals(8.2, env.getXmax(), EPSILON);
+        Assert.assertEquals(8.2, env.getXmin(), EPSILON);
+        Assert.assertEquals(4.5, env.getYmax(), EPSILON);
+        Assert.assertEquals(4.5, env.getYmin(), EPSILON);
+	}
 
 }

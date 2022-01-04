@@ -79,6 +79,52 @@ public class LineStringTest {
 		Assert.assertEquals(3.5, lineCopy.getPointN(1).getCoordinate().getY(), EPSILON);
 	}
 
+    @Test 
+    public void testGetEnvelopeEmpty(){
+        
+        List<Point> points = new ArrayList<>();
+        points.add(pt1);
+
+        LineString l = new LineString(points);
+
+        Envelope env = l.getEnvelope();
+
+        Assert.assertTrue(env.isEmpty());
+    }
+
+    @Test 
+    public void testGetEnvelope(){
+        Point pt3 = new Point(new Coordinate(1.1, 5.5));
+        Point pt4 = new Point(new Coordinate(1.5, 4.5));
+
+        List<Point> points = new ArrayList<>();
+        points.add(pt1);
+        points.add(pt3);
+
+        LineString l = new LineString(points);
+
+        
+        List<Point> points2 = new ArrayList<>();
+        points2.add(pt3);
+        points2.add(pt4);
+        LineString l2 = new LineString(points2);
+
+        Envelope env = l.getEnvelope();
+        Envelope env2 = l2.getEnvelope();
+
+        Assert.assertFalse(env2.isEmpty());
+        Assert.assertEquals(1.5, env2.getXmax(), EPSILON);
+        Assert.assertEquals(1.1, env2.getXmin(), EPSILON);
+        Assert.assertEquals(5.5, env2.getYmax(), EPSILON);
+        Assert.assertEquals(4.5, env2.getYmin(), EPSILON);
+
+        Assert.assertFalse(env.isEmpty());
+        Assert.assertEquals(1.1, env.getXmax(), EPSILON);
+        Assert.assertEquals(1.1, env.getXmin(), EPSILON);
+        Assert.assertEquals(5.5, env.getYmax(), EPSILON);
+        Assert.assertEquals(5.5, env.getYmin(), EPSILON);
+    }
+
 
 
 }
