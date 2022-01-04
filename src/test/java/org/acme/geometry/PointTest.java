@@ -80,7 +80,7 @@ public class PointTest {
 	}
 
 	@Test
-	public void testAcceptWktVisitor() throws UnsupportedEncodingException{
+	public void testAcceptWktVisitor(){
 		Geometry geometry = new Point(new Coordinate(3.0,4.0));
 		WktVisitor visitor = new WktVisitor();
 		geometry.accept(visitor);
@@ -88,11 +88,17 @@ public class PointTest {
 	}
 
 	@Test
-	public void testAcceptWktVisitorEmpty() throws UnsupportedEncodingException{
+	public void testAcceptWktVisitorEmpty() {
 		Geometry geometry = new Point();
 		WktVisitor visitor = new WktVisitor();
 		geometry.accept(visitor);
 		Assert.assertEquals("POINT EMPTY", visitor.getResult());
+	}
+
+	@Test 
+	public void testAsText(){
+		Assert.assertEquals("POINT(8.2 4.5)", point.asText());
+		Assert.assertEquals("POINT EMPTY", pointEmpty.asText());
 	}
 
 }

@@ -164,6 +164,21 @@ public class LineStringTest {
 		Assert.assertEquals("LINESTRING EMPTY", visitor.getResult());
 	}
 
+    @Test 
+	public void testAsText(){
+        Point pt3 = new Point(new Coordinate(1.1, 5.5));
+        Point pt4 = new Point(new Coordinate(1.5, 4.5));
+        List<Point> points = new ArrayList<>();
+        points.add(pt3);
+        points.add(pt4);
+        LineString lineString = new LineString(points);
+
+        LineString emptyLineString = new LineString();
+
+		Assert.assertEquals("LINESTRING(1.1 5.5,1.5 4.5)", lineString.asText());
+		Assert.assertEquals("LINESTRING EMPTY", emptyLineString.asText());
+	}
+
 
 
 }

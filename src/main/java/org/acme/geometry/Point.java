@@ -1,6 +1,8 @@
 package org.acme.geometry;
 
-public class Point implements Geometry {
+import org.w3c.dom.views.AbstractView;
+
+public class Point extends AbstractGeometry {
 
     private Coordinate coordinate;
 
