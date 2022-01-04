@@ -5,7 +5,8 @@ public class Envelope {
     private Coordinate topRight;
 
     Envelope(){
-
+        this.bottomLeft = new Coordinate();
+        this.topRight = new Coordinate();
     }
 
     Envelope(Coordinate bottomLeft, Coordinate topRight){
@@ -14,7 +15,10 @@ public class Envelope {
     }
 
     public Boolean isEmpty(){
-
+        if (bottomLeft.isEmpty() || topRight.isEmpty()){
+            return true;
+        }
+        else return false;
     }
 
     public double getXmin(){
